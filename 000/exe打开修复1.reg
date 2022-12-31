@@ -1,0 +1,15 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\.exe]
+
+@="exefile"
+
+"Content Type"="application/x-msdownload"
+
+[HKEY_CLASSES_ROOT\.exe\PersistentHandler]
+
+@="{098f2470-bae0-11cd-b579-08002b30bfeb}"
+
+[HKEY_CLASSES_ROOT\exefile\shell\open\command]
+
+@="\"%1\" %*"
