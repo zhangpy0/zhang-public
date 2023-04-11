@@ -191,3 +191,14 @@ $surf(z,c)$
  $subplot(2,2,3);surfc(x,y,z)$
  
  $subplot(2,2,4);surfl(x,y,z)$
+ 
+#### 图形标注函数
+> title(图形标题)
+
+> xlabel(x轴说明)
+
+> ylabel(y轴说明)
+
+> text(x,y,文本说明)
+
+> legend(图1，图2，...，参数...)
