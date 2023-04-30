@@ -31,11 +31,12 @@ v0 = np.array([v_0, 0, 0])
 g_vector = np.array([0, 0, -g])
 
 def dvdt(v, t):
+    # 微分方程
     dvdt = g_vector + k / m *(v_wind - v) * np.linalg.norm(v_wind - v)
     return dvdt
 
 # 步长
-dt = 0.01
+dt = 0.00005
 # 时间
 t = np.arange(0, 100, dt)
 # 初速度
@@ -43,9 +44,12 @@ v = np.array([v_0, 0, 0])
 # 位置
 x = np.array([0, 0, h])
 
+#x_list = []
+
 for i in range(len(t)):
-    v = v + dvdt(v, t[i]) * dt
-    x = x + v * dt
+    v = v + dt / 2 *(dvdt(v, t[i]) + dvdt(v + dt * dvdt(v, t[i]), t[i]))  # 欧拉优化
+    x = x + dt * v + dt ** 2 / 2 * dvdt(v, t[i])   # 二阶精度
+    #x_list.append(x)
     print('时间：', t[i], '速度：', v, '位置：', x)
     if x[2] <= 0:
         print('落地时间：', t[i])
@@ -56,4 +60,3 @@ s = np.linalg.norm(x[0:1])
 s = np.linalg.norm([s,h])
 print('投放距离：', s)
 print('当前风速：', v_wind_0, '当前角度：', theta)
-
